@@ -17,6 +17,10 @@
   font-size: 50px;
 }
 
+.body-container {
+  display: flex;
+}
+
 .lot-container {
   background-color: #e7e7e7;
   margin-top: 40px;
@@ -29,4 +33,46 @@
 
 .lot-container > * {
   margin: 10px;
+}
+
+.monitor-container {
+  background-color: #e7e7e7;
+  display: flex;
+  width: 100%;
+  margin: 40px;
+  border-radius: 2rem;
+}
+
+.monitor-container > * {
+  margin: 40px;
+  border-radius: 2rem;
+}
+
+.result-container {
+  background-color: white;
+  flex: 1;
+}
+
+.result-detail-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 40px;
+}
+
+.result-detail-container > * {
+  border-radius: 2rem;
+  flex: 1;
+}
+
+.feature-container-1 {
+  background-color: white;
+}
+
+.feature-container-2 {
+  background-color: white;
+}
+
+.advice-container {
+  background-color: white;
 }
