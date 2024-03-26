@@ -1,0 +1,19 @@
+.bar-graph {
+  display: flex;
+  width: 80%;
+  height: 50px; /* 바 그래프의 높이 조절 */
+  padding: 50px;
+}
+
+.bar {
+  flex-grow: 1;
+  height: 100%;
+}
+
+.red {
+  background-color: #cf3d3d;
+}
+
+.blue {
+  background-color: #1e4a9f;
+}

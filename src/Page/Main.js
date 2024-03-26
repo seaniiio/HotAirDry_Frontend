@@ -3,6 +3,7 @@ import "./Main.css";
 import Lot from "../Component/Lot/Lot";
 import Clock from "../Component/Clock/Clock";
 import ResultChart from "../Component/ResultChart/ResultChart";
+import FeatureChart from "../Component/FeatureChart/FeatureChart";
 
 function Main() {
   const chartData = {
@@ -10,6 +11,8 @@ function Main() {
     colors: ["#CF3D3D", "#1E4A9F"],
   };
   const abnormalProb = 80;
+  const tempContribution = 60;
+  const elecContribution = 40;
 
   return (
     <div className="main-container">
@@ -18,16 +21,16 @@ function Main() {
       </div>
       <div className="body-container">
         <div className="lot-container">
-          <Lot number="1" state="normal"></Lot>
-          <Lot number="2" state="abnormal"></Lot>
+          <Lot number="1" state="abnormal"></Lot>
+          <Lot number="2" state="normal"></Lot>
           <Lot number="3" state="normal"></Lot>
           <Lot number="4" state="abnormal"></Lot>
           <Lot number="5" state="normal"></Lot>
           <Lot number="6" state="abnormal"></Lot>
-          <Lot number="7" state="normal"></Lot>
-          <Lot number="8" state="abnormal"></Lot>
-          <Lot number="9" state="normal"></Lot>
-          <Lot number="10" state="abnormal"></Lot>
+          <Lot number="7" state="abnormal"></Lot>
+          <Lot number="8" state="normal"></Lot>
+          <Lot number="9" state="abnormal"></Lot>
+          <Lot number="10" state="normal"></Lot>
           <Lot number="11" state="normal"></Lot>
         </div>
         <div className="monitor-container">
@@ -44,8 +47,16 @@ function Main() {
             </div>
           </div>
           <div className="result-detail-container">
-            <div className="feature-container-1">온도</div>
-            <div className="feature-container-2">전류</div>
+            <div className="feature-container">
+              <div className="feature-title">Feature 1</div>
+              <div className="feature-name">온도</div>
+              <FeatureChart prob={tempContribution}></FeatureChart>
+            </div>
+            <div className="feature-container">
+              <div className="feature-title">Feature 2</div>
+              <div className="feature-name">전류</div>
+              <FeatureChart prob={elecContribution}></FeatureChart>
+            </div>
             <div className="advice-container">온도를 올려주세요</div>
           </div>
         </div>

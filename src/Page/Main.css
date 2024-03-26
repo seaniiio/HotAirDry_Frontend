@@ -13,7 +13,7 @@
 }
 
 .header-container > p {
-  font-weight: 700;
+  font-weight: 800;
   font-size: 50px;
 }
 
@@ -55,7 +55,7 @@
 
 .result-clock-container {
   padding: 20px;
-  font-size: 24px;
+  font-size: 30px;
   font-weight: bolder;
 }
 
@@ -94,14 +94,29 @@
   flex: 1;
 }
 
-.feature-container-1 {
+.feature-container {
   background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.feature-container-2 {
-  background-color: white;
+.feature-title {
+  padding-top: 20px;
+  font-size: 50px;
+  font-weight: 700;
+}
+
+.feature-name {
+  font-size: 30px;
+  font-weight: 700;
 }
 
 .advice-container {
   background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 50px;
 }
