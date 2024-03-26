@@ -2,8 +2,15 @@ import React from "react";
 import "./Main.css";
 import Lot from "../Component/Lot/Lot";
 import Clock from "../Component/Clock/Clock";
+import ResultChart from "../Component/ResultChart/ResultChart";
 
 function Main() {
+  const chartData = {
+    values: [70, 30],
+    colors: ["#CF3D3D", "#1E4A9F"],
+  };
+  const abnormalProb = 80;
+
   return (
     <div className="main-container">
       <div className="header-container">
@@ -27,6 +34,13 @@ function Main() {
           <div className="result-container">
             <div className="result-clock-container">
               <Clock />
+            </div>
+            <div className="result-chart-container">
+              <ResultChart data={chartData} />
+            </div>
+            <div className="result-text-container">
+              <div>이상 발생 확률</div>
+              <div>{abnormalProb}%</div>
             </div>
           </div>
           <div className="result-detail-container">
