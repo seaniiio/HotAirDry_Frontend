@@ -1,4 +1,32 @@
 .main-container {
   padding: 40px;
-  background: red;
+  background-color: #f7f7f7;
+}
+
+.header-container {
+  background-color: #e7e7e7;
+  height: 6rem;
+  border-radius: 2rem;
+  display: flex;
+  align-items: center;
+  padding-left: 2rem;
+}
+
+.header-container > p {
+  font-weight: 700;
+  font-size: 50px;
+}
+
+.lot-container {
+  background-color: #e7e7e7;
+  margin-top: 40px;
+  border-radius: 2rem;
+  width: 6rem;
+  padding: 10px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.lot-container > * {
+  margin: 10px;
 }
