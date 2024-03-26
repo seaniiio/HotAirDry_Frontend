@@ -1,6 +1,7 @@
 import React from "react";
 import "./Main.css";
 import Lot from "../Component/Lot/Lot";
+import Clock from "../Component/Clock/Clock";
 
 function Main() {
   return (
@@ -23,7 +24,11 @@ function Main() {
           <Lot number="11" state="normal"></Lot>
         </div>
         <div className="monitor-container">
-          <div className="result-container">날짜</div>
+          <div className="result-container">
+            <div className="result-clock-container">
+              <Clock />
+            </div>
+          </div>
           <div className="result-detail-container">
             <div className="feature-container-1">온도</div>
             <div className="feature-container-2">전류</div>

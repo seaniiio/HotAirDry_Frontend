@@ -53,6 +53,12 @@
   flex: 1;
 }
 
+.result-clock-container {
+  padding: 20px;
+  font-size: 24px;
+  font-weight: bolder;
+}
+
 .result-detail-container {
   display: flex;
   flex-direction: column;
