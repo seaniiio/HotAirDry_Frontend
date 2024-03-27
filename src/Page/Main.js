@@ -6,13 +6,31 @@ import ResultChart from "../Component/ResultChart/ResultChart";
 import FeatureChart from "../Component/FeatureChart/FeatureChart";
 
 function Main() {
+  let nowLot = 0; // 현재 로트 (0 ~ 11)
+  let allAbnormalProb = [60, 20, 30, 80, 90, 20, 30, 40, 10, 60, 80]; // 모든 로트 이상 확률
+
   const chartData = {
-    values: [70, 30],
+    values: [allAbnormalProb[nowLot], 100 - allAbnormalProb[nowLot]],
     colors: ["#CF3D3D", "#1E4A9F"],
   };
-  const abnormalProb = 80;
+  //const abnormalProb = 80;
   const tempContribution = 60;
   const elecContribution = 40;
+  const adviceMessage = [
+    "온도를 올려주세요",
+    "온도를 낮춰주세요",
+    "전류를 높여주세요",
+    "전류를 낮춰주세요",
+  ];
+  let nowMessage = 0; // 현재 이상 원인 index
+
+  const isAbnormal = (prob) => {
+    if (prob > 50) {
+      return "abnormal";
+    } else {
+      return "normal";
+    }
+  };
 
   return (
     <div className="main-container">
@@ -21,17 +39,17 @@ function Main() {
       </div>
       <div className="body-container">
         <div className="lot-container">
-          <Lot number="1" state="abnormal"></Lot>
-          <Lot number="2" state="normal"></Lot>
-          <Lot number="3" state="normal"></Lot>
-          <Lot number="4" state="abnormal"></Lot>
-          <Lot number="5" state="normal"></Lot>
-          <Lot number="6" state="abnormal"></Lot>
-          <Lot number="7" state="abnormal"></Lot>
-          <Lot number="8" state="normal"></Lot>
-          <Lot number="9" state="abnormal"></Lot>
-          <Lot number="10" state="normal"></Lot>
-          <Lot number="11" state="normal"></Lot>
+          <Lot number="1" state={isAbnormal(allAbnormalProb[0])}></Lot>
+          <Lot number="2" state={isAbnormal(allAbnormalProb[1])}></Lot>
+          <Lot number="3" state={isAbnormal(allAbnormalProb[2])}></Lot>
+          <Lot number="4" state={isAbnormal(allAbnormalProb[3])}></Lot>
+          <Lot number="5" state={isAbnormal(allAbnormalProb[4])}></Lot>
+          <Lot number="6" state={isAbnormal(allAbnormalProb[5])}></Lot>
+          <Lot number="7" state={isAbnormal(allAbnormalProb[6])}></Lot>
+          <Lot number="8" state={isAbnormal(allAbnormalProb[7])}></Lot>
+          <Lot number="9" state={isAbnormal(allAbnormalProb[8])}></Lot>
+          <Lot number="10" state={isAbnormal(allAbnormalProb[9])}></Lot>
+          <Lot number="11" state={isAbnormal(allAbnormalProb[10])}></Lot>
         </div>
         <div className="monitor-container">
           <div className="result-container">
@@ -43,7 +61,7 @@ function Main() {
             </div>
             <div className="result-text-container">
               <div>이상 발생 확률</div>
-              <div>{abnormalProb}%</div>
+              <div>{allAbnormalProb[nowLot]}%</div>
             </div>
           </div>
           <div className="result-detail-container">
@@ -57,7 +75,7 @@ function Main() {
               <div className="feature-name">전류</div>
               <FeatureChart prob={elecContribution}></FeatureChart>
             </div>
-            <div className="advice-container">온도를 올려주세요</div>
+            <div className="advice-container">{adviceMessage[nowMessage]}</div>
           </div>
         </div>
       </div>
