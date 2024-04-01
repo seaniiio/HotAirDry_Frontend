@@ -7,7 +7,10 @@ import FeatureChart from "../Component/FeatureChart/FeatureChart";
 
 function Main() {
   let [nowLot, setNowLot] = useState(0);
-  let allAbnormalProb = [20, 30, 80, 90, 20, 30, 40, 10, 60, 80, 100]; // 모든 로트 이상 확률
+  let allAbnormalProb = [20, 30, 80, 90, 20, 30, 40, 10, 60, 80, 100]; // 모든 로트 이상 확률, 로트1 ~ 로트11
+  let allTempAbnormalProb = [40, 70, 80, 10, 60, 40, 50, 80, 20, 40, 90]; // 로트별 온도 비정상 확률
+  let allCurrentAbnormalProb = [10, 20, 90, 50, 20, 50, 0, 80, 90, 70, 100]; // 로트별 전류 비정상 확률
+  let adviceMessageIdx = [0, 2, 3, 1, 2, 2, 0, 3, 2, 3, 1]; // 메시지 출력 idx
 
   const chartData = {
     lot: nowLot,
@@ -15,8 +18,8 @@ function Main() {
     colors: ["#CF3D3D", "#1E4A9F"],
   };
   //const abnormalProb = 80;
-  const tempContribution = 60;
-  const elecContribution = 40;
+  //   const tempContribution = 60;
+  //   const elecContribution = 40;
   const adviceMessage = [
     "온도를 올려주세요",
     "온도를 낮춰주세요",
@@ -109,14 +112,18 @@ function Main() {
             <div className="feature-container">
               <div className="feature-title">Feature 1</div>
               <div className="feature-name">온도</div>
-              <FeatureChart prob={tempContribution}></FeatureChart>
+              <FeatureChart
+                prob={allTempAbnormalProb[nowLot - 1]}></FeatureChart>
             </div>
             <div className="feature-container">
               <div className="feature-title">Feature 2</div>
               <div className="feature-name">전류</div>
-              <FeatureChart prob={elecContribution}></FeatureChart>
+              <FeatureChart
+                prob={allCurrentAbnormalProb[nowLot - 1]}></FeatureChart>
             </div>
-            <div className="advice-container">{adviceMessage[nowMessage]}</div>
+            <div className="advice-container">
+              {adviceMessage[adviceMessageIdx[nowLot - 1]]}
+            </div>
           </div>
         </div>
       </div>
