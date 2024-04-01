@@ -19,7 +19,12 @@ const LotButton = styled.button`
   }
 `;
 
-const Lot = ({ number, state }) => {
-  return <LotButton state={state}>{number}</LotButton>;
+const Lot = ({ number, state, onClick }) => {
+  return (
+    <LotButton state={state} onClick={onClick}>
+      {number}
+    </LotButton>
+  );
 };
+
 export default Lot;

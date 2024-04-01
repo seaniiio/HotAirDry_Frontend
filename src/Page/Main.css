@@ -63,6 +63,13 @@
   padding-top: 100px;
 }
 
+.result-chart-lot-container {
+  display: absolute;
+  font-size: 50px;
+  font-weight: bold;
+  text-align: center;
+}
+
 .result-text-container {
   display: flex;
   justify-content: center;

@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useState } from "react";
 import "./Main.css";
 import Lot from "../Component/Lot/Lot";
 import Clock from "../Component/Clock/Clock";
@@ -6,11 +6,12 @@ import ResultChart from "../Component/ResultChart/ResultChart";
 import FeatureChart from "../Component/FeatureChart/FeatureChart";
 
 function Main() {
-  let nowLot = 0; // 현재 로트 (0 ~ 11)
-  let allAbnormalProb = [60, 20, 30, 80, 90, 20, 30, 40, 10, 60, 80]; // 모든 로트 이상 확률
+  let [nowLot, setNowLot] = useState(0);
+  let allAbnormalProb = [20, 30, 80, 90, 20, 30, 40, 10, 60, 80, 100]; // 모든 로트 이상 확률
 
   const chartData = {
-    values: [allAbnormalProb[nowLot], 100 - allAbnormalProb[nowLot]],
+    lot: nowLot,
+    values: [allAbnormalProb[nowLot - 1], 100 - allAbnormalProb[nowLot - 1]],
     colors: ["#CF3D3D", "#1E4A9F"],
   };
   //const abnormalProb = 80;
@@ -32,6 +33,13 @@ function Main() {
     }
   };
 
+  const clickLotButton = (num) => {
+    return () => {
+      console.log("lot 버튼 클릭:", num, "번");
+      setNowLot(num);
+    };
+  };
+
   return (
     <div className="main-container">
       <div className="header-container">
@@ -39,17 +47,50 @@ function Main() {
       </div>
       <div className="body-container">
         <div className="lot-container">
-          <Lot number="1" state={isAbnormal(allAbnormalProb[0])}></Lot>
-          <Lot number="2" state={isAbnormal(allAbnormalProb[1])}></Lot>
-          <Lot number="3" state={isAbnormal(allAbnormalProb[2])}></Lot>
-          <Lot number="4" state={isAbnormal(allAbnormalProb[3])}></Lot>
-          <Lot number="5" state={isAbnormal(allAbnormalProb[4])}></Lot>
-          <Lot number="6" state={isAbnormal(allAbnormalProb[5])}></Lot>
-          <Lot number="7" state={isAbnormal(allAbnormalProb[6])}></Lot>
-          <Lot number="8" state={isAbnormal(allAbnormalProb[7])}></Lot>
-          <Lot number="9" state={isAbnormal(allAbnormalProb[8])}></Lot>
-          <Lot number="10" state={isAbnormal(allAbnormalProb[9])}></Lot>
-          <Lot number="11" state={isAbnormal(allAbnormalProb[10])}></Lot>
+          <Lot
+            number="1"
+            state={isAbnormal(allAbnormalProb[0])}
+            onClick={clickLotButton(1)}></Lot>
+          <Lot
+            number="2"
+            state={isAbnormal(allAbnormalProb[1])}
+            onClick={clickLotButton(2)}></Lot>
+          <Lot
+            number="3"
+            state={isAbnormal(allAbnormalProb[2])}
+            onClick={clickLotButton(3)}></Lot>
+          <Lot
+            number="4"
+            state={isAbnormal(allAbnormalProb[3])}
+            onClick={clickLotButton(4)}></Lot>
+          <Lot
+            number="5"
+            state={isAbnormal(allAbnormalProb[4])}
+            onClick={clickLotButton(5)}></Lot>
+          <Lot
+            number="6"
+            state={isAbnormal(allAbnormalProb[5])}
+            onClick={clickLotButton(6)}></Lot>
+          <Lot
+            number="7"
+            state={isAbnormal(allAbnormalProb[6])}
+            onClick={clickLotButton(7)}></Lot>
+          <Lot
+            number="8"
+            state={isAbnormal(allAbnormalProb[7])}
+            onClick={clickLotButton(8)}></Lot>
+          <Lot
+            number="9"
+            state={isAbnormal(allAbnormalProb[8])}
+            onClick={clickLotButton(9)}></Lot>
+          <Lot
+            number="10"
+            state={isAbnormal(allAbnormalProb[9])}
+            onClick={clickLotButton(10)}></Lot>
+          <Lot
+            number="11"
+            state={isAbnormal(allAbnormalProb[10])}
+            onClick={clickLotButton(11)}></Lot>
         </div>
         <div className="monitor-container">
           <div className="result-container">
@@ -61,7 +102,7 @@ function Main() {
             </div>
             <div className="result-text-container">
               <div>이상 발생 확률</div>
-              <div>{allAbnormalProb[nowLot]}%</div>
+              <div>{allAbnormalProb[nowLot - 1]}%</div>
             </div>
           </div>
           <div className="result-detail-container">
