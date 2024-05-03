@@ -42,6 +42,9 @@ const DoughnutChart = ({ data }) => {
               bottom: 10,
             },
           },
+          animation: {
+            duration: 0, // 애니메이션 비활성화
+          },
         },
         plugins: [
           {
