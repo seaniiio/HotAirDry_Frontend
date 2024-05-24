@@ -10,6 +10,7 @@ function Main() {
   const [allNormalProb, setAllNormalProb] = useState([]);
   const [contributions, setContributions] = useState([]);
   const [solution, setSolution] = useState("");
+  const [isFetching, setIsFetching] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,24 +36,33 @@ function Main() {
       }
     };
 
-    fetchData();
-
-    // 1초마다 데이터 다시 가져오기
-    const interval = setInterval(fetchData, 2000);
+    let interval;
+    if (isFetching) {
+      fetchData(); // 첫 번째 요청
+      interval = setInterval(fetchData, 1000); // 1초 간격으로 요청
+    }
 
     // cleanup 함수 등록하여 컴포넌트가 unmount될 때 interval을 해제
     return () => clearInterval(interval);
-  }, [nowLot]);
+  }, [isFetching, nowLot]);
 
   const clickLotButton = (num) => () => {
     console.log("lot 버튼 클릭:", num, "번");
     setNowLot(num);
   };
 
+  const startFetching = () => {
+    const _ = fetch("http://127.0.0.1:8000/main/background");
+    setIsFetching(true);
+  };
+
   return (
     <div className="main-container">
       <div className="header-container">
         <p>실시간 공정 이상 모니터링</p>
+        <button onClick={startFetching} className="start-button">
+          Start Fetching
+        </button>
       </div>
       <div className="body-container">
         <div className="lot-container">
