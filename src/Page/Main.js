@@ -15,18 +15,20 @@ function Main() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response1 = await fetch("http://127.0.0.1:8000/main/lots");
+        const response1 = await fetch(
+          process.env.REACT_APP_BACKEND_URL + "main/lots"
+        );
         const lotsData = await response1.json();
         setAllNormalProb(lotsData.map((prob) => Math.abs(prob - 100)));
 
         const response2 = await fetch(
-          `http://127.0.0.1:8000/main/lot/cont/${nowLot}`
+          process.env.REACT_APP_BACKEND_URL + `main/lot/cont/${nowLot}`
         );
         const contributionData = await response2.json();
         setContributions(contributionData);
 
         const response3 = await fetch(
-          `http://127.0.0.1:8000/main/solution/${nowLot}`
+          process.env.REACT_APP_BACKEND_URL + `main/solution/${nowLot}`
         );
         const solutionData = await response3.json();
         setSolution(solutionData);
@@ -52,7 +54,7 @@ function Main() {
   };
 
   const startFetching = () => {
-    const _ = fetch("http://127.0.0.1:8000/main/background");
+    const _ = fetch(process.env.REACT_APP_BACKEND_URL + "main/background");
     setIsFetching(true);
   };
 
